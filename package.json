@@ -1,6 +1,6 @@
 {
   "name": "@compulse/gravity",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A helper CLI for creating local development environments.",
   "main": "index.js",
   "dependencies": {
@@ -23,7 +23,7 @@
   "bin": {
     "gravity": "./index.js"
   },
-  "author": "",
+  "author": "Andy Nguyen",
   "license": "ISC",
   "publishConfig": {
     "registry": "http://134.209.46.242/"
