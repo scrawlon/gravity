@@ -1,0 +1,8 @@
+# Ignore sensitive files
+.npmrc
+
+# Ignore file system files
+.DS_Store
+
+# Prevent the user from accidently uploading these
+node_modules/
