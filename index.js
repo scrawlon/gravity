@@ -1,46 +1,42 @@
 #!/usr/bin/env node
 
-const chalk = require('chalk');
 const program = require('commander');
-const ora = require('ora');
-const portfinder = require('portfinder');
+const chalk = require('chalk');
+const Gravity = require('./lib');
 
-const start = require('./lib/start');
-const files = require('./lib/files');
-const spinner = ora({
-  text: 'Testing',
-  indent: 4
-});
-
-setTimeout(() => {
-  portfinder.getPortPromise()
-    .then(port => {
-      spinner.succeed(`Port found at ${port}`);
-      console.log('\n');
-      start.gatherParameters();
-    }).catch(err => console.error(err));
-}, 1000);
-
+/**
+ * This is the core of the CLI. This creates all the commands necessary to handle the user input.
+ */
 program
   .version('0.1.0')
   .option('create <project>', 'Create')
+  .option('start', 'Start local docker container and watch files for changes')
+  .option('build', '')
+  .option('deploy', '')
+  .option('-v, --version', 'Check version')
   .parse(process.argv);
 
-// console.log(process.argv);
-// console.log(program.create);
+/**
+ * Check to see if the user did not pass any parameters at all. Something is required.
+ */
+if (process.argv.length <= 2) {
+  console.log('Please specify a project directory to create:');
+  console.log(chalk.yellow('\xa0\xa0gravity create ') + chalk.green('<project-directory>\n'));
+  console.log('For example:');
+  console.log(chalk.yellow('\xa0\xa0gravity create ') + chalk.green('compulse-integrated-marketing\n'));
+  console.log('If you need additional help run ' + chalk.yellow('gravity help') + ' to see all available options.');
+}
 
-start.checkNodeVersion();
-start.initialize();
-spinner.start();
-
-
+/**
+ * CREATE: This command creates a new installation on the users local filesystem and bootstraps a development environment
+ * based on a questionnaire.
+ */
 if (program.create !== undefined) {
-  if (files.directoryExists(program.create)) {
-    console.log(chalk.red('There is already a directory that exists for: ' + program.create));
-    process.exit();
-  } else {
-    console.log(chalk.green('Creating new project directory...'));
-  }
-} else {
+  const create = async () => {
+    await Gravity.Utils.initialize();
+    await Gravity.Utils.checkNodeVersion();
+    await Gravity.Create(program.create);
+  };
 
+  create();
 }

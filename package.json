@@ -7,20 +7,23 @@
     "chalk": "^2.4.2",
     "clear": "^0.1.0",
     "clui": "^0.3.6",
+    "command-exists": "^1.2.8",
     "commander": "^2.19.0",
     "configstore": "^4.0.0",
     "figlet": "^1.2.1",
     "inquirer": "^6.2.2",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
+    "node-ssh": "^6.0.0",
     "ora": "^3.2.0",
     "portfinder": "^1.0.20",
+    "rxjs": "^6.4.0",
     "simple-git": "^1.107.0",
     "touch": "^3.1.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "bin": {
     "gravity": "./index.js"
@@ -28,6 +31,6 @@
   "author": "Andy Nguyen",
   "license": "ISC",
   "publishConfig": {
-    "registry": "http://134.209.46.242/"
+    "registry": "http://registry.compulse.com/"
   }
 }
