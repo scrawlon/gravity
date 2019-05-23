@@ -1,5 +1,16 @@
 #!/usr/bin/env node
 
+/**
+ * Copyright (c) 2019-present, Compulse Integrated Marketing.
+ * 
+ * Written By: Andy Nguyen, Scott McGrath, Kevin Hall.
+ * 
+ * The source of this library is PROPRIETARY and not for public use. This package does works specifically
+ * with the specific needs of Compulse Integrated Marketing.
+ * 
+ * WARNING: DO NOT MODIFY ANY OF THESE FILES. YOU HAVE BEEN WARNED.
+ */
+
 const program = require('commander');
 const chalk = require('chalk');
 const Gravity = require('./lib');
@@ -8,7 +19,7 @@ const Gravity = require('./lib');
  * This is the core of the CLI. This creates all the commands necessary to handle the user input.
  */
 program
-  .version('0.1.0')
+  .version('0.1.2')
   .option('create <project>', 'Create')
   .option('start', 'Start local docker container and watch files for changes')
   .option('build', '')
@@ -25,6 +36,7 @@ if (process.argv.length <= 2) {
   console.log('For example:');
   console.log(chalk.yellow('\xa0\xa0gravity create ') + chalk.green('compulse-integrated-marketing\n'));
   console.log('If you need additional help run ' + chalk.yellow('gravity help') + ' to see all available options.');
+  process.exit(1);
 }
 
 /**
