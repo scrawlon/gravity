@@ -1,0 +1,55 @@
+image: node:8-alpine
+
+pipelines:
+  branches:
+    master:
+      - step:
+          name: BUILD SCRIPTS
+          script:
+            # Install git as a dependency
+            - apk add --no-cache git
+
+            # Install front-end scripts
+            - npm install
+
+            # Run the build script before deployment
+            - npm run build
+
+            - echo "Successfully compiled scripts"
+      
+      - step:
+          name: DEPLOY PRODUCTION
+          deployment: production
+          script:
+            # Install git and ssh as dependencies
+            - echo "Install git and SSH"
+            - apk add --no-cache git openssh
+
+            # Remove illegal files
+            - rm -rf node_modules/
+            - rm -rf wp-config.php
+            - rm -rf wp-content/mysql.sql
+            - rm -rf wp-content/object-cache.php
+            - rm -rf wp-content/mu-plugins/
+            - rm -rf wp-content/uploads/
+            
+            # Fake user
+            - git config --global user.email "team+pipelines@compulse.com"
+            - git config --global user.name "Pipelines"
+
+            # Refresh git
+            - git add .
+            - git commit -m "Refreshed files"
+
+            # Pull production just in case
+            # git pull --no-edit git@git.wpengine.com:production/wcti70596site.git master
+
+            # Push to WP Engine
+            - git push git@git.wpengine.com:production/wcti70596site.git master --force
+            - echo "Pushed to Production"
+
+    staging:
+      - step:
+          script:
+            - git push git@git.wpengine.com:production/wcti70596site.git staging
+            - echo "Pushed to Staging"
