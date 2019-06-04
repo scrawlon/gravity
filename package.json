@@ -1,6 +1,6 @@
 {
   "name": "@compulse/gravity",
-  "version": "0.1.1",
+  "version": "0.1.11",
   "description": "A helper CLI for creating local development environments.",
   "main": "index.js",
   "dependencies": {
@@ -10,7 +10,9 @@
     "command-exists": "^1.2.8",
     "commander": "^2.19.0",
     "configstore": "^4.0.0",
+    "cross-spawn": "^6.0.5",
     "figlet": "^1.2.1",
+    "fs-extra": "^8.0.1",
     "inquirer": "^6.2.2",
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",

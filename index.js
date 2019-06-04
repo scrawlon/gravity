@@ -19,7 +19,7 @@ const Gravity = require('./lib');
  * This is the core of the CLI. This creates all the commands necessary to handle the user input.
  */
 program
-  .version('0.1.2')
+  .version('0.1.11')
   .option('create <project>', 'Create')
   .option('start', 'Start local docker container and watch files for changes')
   .option('build', '')
