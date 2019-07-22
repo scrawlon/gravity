@@ -2,12 +2,12 @@
 
 /**
  * Copyright (c) 2019-present, Compulse Integrated Marketing.
- * 
+ *
  * Written By: Andy Nguyen, Scott McGrath, Kevin Hall.
- * 
+ *
  * The source of this library is PROPRIETARY and not for public use. This package does works specifically
  * with the specific needs of Compulse Integrated Marketing.
- * 
+ *
  * WARNING: DO NOT MODIFY ANY OF THESE FILES. YOU HAVE BEEN WARNED.
  */
 
@@ -43,10 +43,11 @@ if (process.argv.length <= 2) {
  * CREATE: This command creates a new installation on the users local filesystem and bootstraps a development environment
  * based on a questionnaire.
  */
-if (program.create !== undefined) {
+if (program.create) {
+  console.log('program', program.create);
   const create = async () => {
     await Gravity.Utils.initialize();
-    await Gravity.Utils.checkNodeVersion();
+    await Gravity.Utils.checkDependencies();
     await Gravity.Create(program.create);
   };
 
