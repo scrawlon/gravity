@@ -48,6 +48,7 @@ if (program.create) {
   const create = async () => {
     await Gravity.Utils.initialize();
     await Gravity.Utils.checkDependencies();
+    await Gravity.Utils.checkConnections();
     await Gravity.Create(program.create);
   };
 
