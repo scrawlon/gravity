@@ -11,6 +11,8 @@
  * WARNING: DO NOT MODIFY ANY OF THESE FILES. YOU HAVE BEEN WARNED.
  */
 
+require('dotenv').config({path: __dirname + '/.env'});
+
 const program = require('commander');
 const chalk = require('chalk');
 const Gravity = require('./lib');
